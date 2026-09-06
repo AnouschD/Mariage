@@ -698,7 +698,10 @@
         headers: { 'Accept': 'application/json' },
         body: formData
       });
-      if (!response.ok) throw new Error('Échec de l\'envoi');
+         if (!response.ok) throw new Error('Échec de l\'envoi');
+      document.getElementById('confirm-message').textContent = (presence === 'oui')
+        ? 'Merci ! À très vite pour la suite.'
+        : 'Merci pour votre réponse. Nous espérons vous voir à une prochaine occasion.';
       document.getElementById('form-state').classList.add('hidden');
       document.getElementById('confirm-state').classList.remove('hidden');
     } catch (err) {
