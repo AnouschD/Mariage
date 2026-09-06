@@ -606,16 +606,9 @@
   // Bouton "Activer le son" — l'autoplay muet est la seule option fiable au chargement
   const soundBtn = document.getElementById('sound-toggle');
   soundBtn.addEventListener('click', () => {
-    videoFrameEl.muted = !videoFrameEl.muted;
+        videoFrameEl.muted = !videoFrameEl.muted;
     soundBtn.textContent = videoFrameEl.muted ? 'Activer le son' : 'Couper le son';
-  function unmuteOnFirstInteraction() {
-    videoFrameEl.muted = false;
-    soundBtn.textContent = 'Couper le son';
-    document.removeEventListener('pointerdown', unmuteOnFirstInteraction);
-    document.removeEventListener('keydown', unmuteOnFirstInteraction);
-    }
-    document.addEventListener('pointerdown', unmuteOnFirstInteraction, { once: true });
-    document.addEventListener('keydown', unmuteOnFirstInteraction, { once: true });
+  });
     
   });
   // ---------------------------------------------------------
