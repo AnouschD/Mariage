@@ -620,7 +620,15 @@
   });
   // Active le son automatiquement dès le tout premier geste de l'invité sur la page
   // (les navigateurs interdisent le son dès le chargement, mais l'autorisent après une interaction)
-  
+    function unmuteOnFirstInteraction() {
+    videoFrameEl.muted = false;
+    soundBtn.textContent = 'Couper le son';
+    videoFrameEl.play().catch(() => {});
+    document.removeEventListener('click', unmuteOnFirstInteraction);
+    document.removeEventListener('keydown', unmuteOnFirstInteraction);
+  }
+  document.addEventListener('click', unmuteOnFirstInteraction, { once: true });
+  document.addEventListener('keydown', unmuteOnFirstInteraction, { once: true });
 
   // ---------------------------------------------------------
   // Scroll automatique vers le carton à la fin de la vidéo — le
