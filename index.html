@@ -539,11 +539,11 @@
                 <div class="field-row">
                   <div class="field">
                     <label for="nbAdultes" style="font-size: 0.68rem;">Adultes</label>
-                    <input type="number" id="nbAdultes" name="nbAdultes" min="1" max="10" step="1" placeholder="1" required>
+                    <input type="number" id="nbAdultes" name="nbAdultes" min="1" max="10" step="1" placeholder="1">
                   </div>
                   <div class="field">
                     <label for="nbEnfants" style="font-size: 0.68rem;">Enfants</label>
-                    <input type="number" id="nbEnfants" name="nbEnfants" min="0" max="10" step="1" placeholder="0" required>
+                    <input type="number" id="nbEnfants" name="nbEnfants" min="0" max="10" step="1" placeholder="0">
                   </div>
                 </div>
               </div>
@@ -641,19 +641,25 @@
   // Affichage conditionnel : présence -> bloc allergies/accompagnement
   //                          accompagnement -> nombre d'accompagnants
   // ---------------------------------------------------------
-  const presenceDependent = document.getElementById('presence-dependent');
+   const presenceDependent = document.getElementById('presence-dependent');
+  const acceptConditions = document.getElementById('accept-conditions');
   document.querySelectorAll('input[name="presence"]').forEach(r => r.addEventListener('change', () => {
     const isPresent = document.querySelector('input[name="presence"]:checked').value === 'oui';
     presenceDependent.classList.toggle('hidden', !isPresent);
+    acceptConditions.required = isPresent;
   }));
 
   const nbAccompagnantsField = document.getElementById('nb-accompagnants-field');
+  const nbAdultesInput = document.getElementById('nbAdultes');
+  const nbEnfantsInput = document.getElementById('nbEnfants');
   document.querySelectorAll('input[name="accompagne"]').forEach(r => r.addEventListener('change', () => {
     const withGuests = document.querySelector('input[name="accompagne"]:checked').value === 'oui';
     nbAccompagnantsField.classList.toggle('hidden', !withGuests);
+    nbAdultesInput.required = withGuests;
+    nbEnfantsInput.required = withGuests;
     if (!withGuests) {
-      document.getElementById('nbAdultes').value = '';
-      document.getElementById('nbEnfants').value = '';
+      nbAdultesInput.value = '';
+      nbEnfantsInput.value = '';
     }
   }));
 
