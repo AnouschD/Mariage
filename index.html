@@ -412,7 +412,7 @@
 <div id="guest-view">
 
   <section class="video-fullscreen snap-section" id="video-section">
-    <video id="video-embed" autoplay muted loop playsinline preload="auto">
+    <video id="video-embed" autoplay muted playsinline preload="auto">
       <source src="" type="video/mp4">
     </video>
     <button class="sound-toggle" id="sound-toggle" type="button">Activer le son</button>
@@ -438,7 +438,6 @@
       <div class="schedule-row"><span class="schedule-time">14h30</span><span>Accueil des invités</span></div>
       <div class="schedule-row"><span class="schedule-time">15h00</span><span>Début de la cérémonie</span></div>
       <div class="schedule-row"><span class="schedule-time">15h30</span><span>Vin d'honneur et photos</span></div>
-      <div class="schedule-row"><span class="schedule-time">17h00</span><span>Atelier sabrage de champagne</span></div>
       <div class="schedule-row"><span class="schedule-time">18h30</span><span>Début du souper</span></div>
     </div>
     <div class="divider" aria-hidden="true" style="margin-top: 32px;">
@@ -491,7 +490,7 @@
       <div class="rsvp-card">
 
         <div id="form-state">
-          <p class="deadline-note" id="deadline-note">Merci de nous répondre avant le 19 septembre 2026</p>
+          <p class="deadline-note" id="deadline-note">Merci de nous répondre avant le 5 octobre 2026</p>
 
           <form id="rsvp-form">
             <div class="field-row">
@@ -591,7 +590,7 @@
   const CONFIG = {
     coupleNames: "Noémie & Anousch",
     weddingDateDisplay: "22 mai 2027", // texte affiché dans le carton
-    rsvpDeadline: "2026-09-19",            // format AAAA-MM-JJ — au-delà, le formulaire se ferme
+    rsvpDeadline: "2026-10-05",            // format AAAA-MM-JJ — au-delà, le formulaire se ferme
     videoUrl: "https://anouschd.github.io/Mariage/71bfe614-noan-video.mp4", // hébergé sur GitHub Pages
     videoDurationSeconds: 50,              // filet de sécurité uniquement si le fichier ne charge pas (l'événement 'ended' natif est fiable)
     formspreeFormId: "xljewogy"
@@ -621,6 +620,7 @@
   function advanceFromVideo() {
     if (hasAdvancedFromVideo) return;
     hasAdvancedFromVideo = true;
+    videoFrameEl.pause();
     document.getElementById('carton').scrollIntoView({ behavior: 'smooth' });
   }
 
